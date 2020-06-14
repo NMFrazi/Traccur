@@ -6,7 +6,7 @@ class Homepage extends Component {
                <div>
                     <h1 id="title">TR<span id="redTitle">Λ</span>CC<span id="redTitle">V</span>R</h1>
 
-                    <div id="container">
+                    <div className="container">
                          <div id="splashWrap">
                               <p id="splashTextTitle">WELCOME</p>
                               <p className="splashText">TRΛCCVR is a browser-based mouse tracking game</p>
@@ -23,7 +23,7 @@ class Homepage extends Component {
                          </div>
                          <div id="animation"></div>
                          <div id="startBtnWrap">
-                              <div id="startBtn" onclick="game(0)">
+                              <div id="startBtn" onClick="game(0)">
                                    <p id="startTxt">PLΛY</p>
                               </div>
                          </div>

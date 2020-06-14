@@ -28,7 +28,7 @@ body{
   text-shadow: 0px 0px 1.5px lightgoldenrodyellow;
 }
 
-#container {
+.container {
     width: 770px;
     height: 770px;
     margin: auto;
