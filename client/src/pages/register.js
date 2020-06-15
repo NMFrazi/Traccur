@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-//import Registration from '../component/registration.js';
+import Registration from '../component/Registration.js';
 
-class Login extends Component {
+class Register extends Component {
 
      render = () => {
           return (
                <div>
                     <div className="container">
                          <div id="splashWrap">
-                              <p id="splashTextTitle">LOGIN</p>
+                              <p id="splashTextTitle">REGISTER</p>
+
+                              <Registration />
                          </div>
                     </div>
                </div>
@@ -16,4 +18,4 @@ class Login extends Component {
      }
 }
 
-export default Login;
+export default Register;

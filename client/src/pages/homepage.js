@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
-class Homepage extends Component {
+class Homepage extends Component {     
      render = () => {
           return (
                <div>
@@ -22,9 +22,9 @@ class Homepage extends Component {
                               <br />
                          </div>
                          <div id="animation"></div>
-                         <div id="startBtnWrap">
-                              <div id="startBtn" onClick="game(0)">
-                                   <p id="startTxt">PLΛY</p>
+                         <div className="btnWrap">
+                              <div className="btnClass" onClick={this.handleLoginClick}>
+                                   <p className="btnTxt">PLΛY</p>
                               </div>
                          </div>
                     </div>
