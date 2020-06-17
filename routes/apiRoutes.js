@@ -1,5 +1,7 @@
 /* eslint-disable indent */
 var db = require("../models");
+var passport = require("passport");
+var bcrypt = require("bcrypt");
 
 module.exports = function (app) {
   // Get all examples
@@ -11,8 +13,8 @@ module.exports = function (app) {
 
   // Create a new example
   app.post("/api/users", function (req, res) {
-    db.User.create(req.body).then(function (dbUser) {
-      res.json(dbUser);
+    db.Player.create(req.body).then(function (dbPlayer) {
+      res.json(dbPlayer);
     });
   });
   // update image
@@ -43,4 +45,48 @@ module.exports = function (app) {
       res.json(dbExample);
     });
   });
+
+  //post route for login
+
+  // when login is successful, retrieve user info
+  router.get("/login/success", (req, res) => {
+    console.log("LOG IN SUCCESS??");
+    console.log(req.user);
+    if (req.user) {
+      // console.log("successFulll", req.user);
+      res.json({
+        success: true,
+        message: "user has successfully authenticated",
+        user: req.user,
+        cookies: req.cookies
+      });
+    } else {
+      res.json({
+        success: false,
+        message: "no user has authenticated",
+        user: null,
+        cookies: req.cookies
+      });
+    }
+  });
+  // when login failed, send failed msg
+  app.get("/login/failed", (req, res) => {
+    console.log("failed login **************");
+    res.json({
+      success: false,
+      message: "user failed to authenticate."
+    });
+  });
+  app.post("/login", (req, res, next) => {
+    console.log("************login from redirect*********");
+    console.log(req.user);
+    console.log(req.body);
+    passport.authenticate("local", {
+      successRedirect: "/login/success",
+      failureRedirect: "/login/failed"
+      // failureFlash: true
+    })(req, res, next);
+  });
+  //post route for register
+  // app.post('/api/register')
 };
