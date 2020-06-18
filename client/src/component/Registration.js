@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 class Registration extends Component {
-     constructor (props) {
+     constructor(props) {
           super(props);
 
           this.state = {
@@ -18,11 +18,13 @@ class Registration extends Component {
      onHandleSubmit = (event) => {
           console.log("form submitted");
           event.preventDefault();
+          const { username, password } = this.state
+          this.props.handleRegister(username, password)
      }
-     
+
      onHandleChange = (event) => {
           console.log("handle change", event);
-          this.setState ({
+          this.setState({
                [event.target.name]: event.target.value
           })
      }
@@ -31,15 +33,15 @@ class Registration extends Component {
           return (
                <div>
                     <h1>registration Component</h1>
-                    <form onSubmit = { this.onHandleSubmit }>
+                    <form onSubmit={this.onHandleSubmit}>
                          <label htmlFor="username">Username</label>
-                         <input 
+                         <input
                               type="text"
                               name="username"
                               value={this.state.username}
                               onChange={this.onHandleChange}
                               required
-                         /> 
+                         />
                          <br />
                          <br />
                          <label htmlFor="username">Password</label>
@@ -49,7 +51,7 @@ class Registration extends Component {
                               value={this.state.password}
                               onChange={this.onHandleChange}
                               required
-                         /> 
+                         />
                          <br />
                          <br />
 

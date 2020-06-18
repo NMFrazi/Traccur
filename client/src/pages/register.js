@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import Registration from '../component/Registration.js';
 
-class Register extends Component {
+const Register = (props) => {
 
-     render = () => {
-          return (
-               <div>
-                    <div className="container">
-                         <div id="splashWrap">
-                              <p id="splashTextTitle">REGISTER</p>
+     // render = () => {
+     return (
+          <div>
+               <div className="container">
+                    <div id="splashWrap">
+                         <p id="splashTextTitle">REGISTER</p>
 
-                              <Registration />
-                         </div>
+                         <Registration
+                              handleRegister={props.handleRegister}
+                         />
                     </div>
                </div>
-          );
-     }
+          </div>
+     );
+     // }
 }
 
 export default Register;

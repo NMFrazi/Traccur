@@ -13,6 +13,13 @@ class App extends Component {
           this.state = { isLoggedIn: false };
      }
 
+     handleRegister = (username, password) => {
+          //make axios call to /api/register
+          const payload = { username: username, password: password }
+
+
+     }
+
      handleLoginClick() {
           this.setState({ isLoggedIn: true });
      }
@@ -24,11 +31,16 @@ class App extends Component {
      render = () => {
           return (
                <Router>
-                    <Switch> 
-                         <Route exact path="/" component = { Homepage } />
-                         <Route exact path="/homepage" component = { Homepage } />
-                         <Route exact path="/login" component = { Login } />
-                         <Route exact path="/register" component={ Register } />
+                    <Switch>
+                         <Route exact path="/" component={Homepage} />
+                         <Route exact path="/homepage" component={Homepage} />
+                         <Route exact path="/login" component={Login} />
+                         <Route exact path="/register" render={() => (<Register
+                              handleRegister={this.handleRegister}
+                         />)} />
+                         {/* <Route exact path="/register" render={()=>( <Dashboard
+                         
+                         />)} /> */}
                     </Switch>
                </Router>
           );
