@@ -137,7 +137,7 @@ body{
   /* transform: translate(0,-50%); */
 }
 
-.btnClass{
+button{
   letter-spacing: 1px;
   cursor: pointer;
   height: 50px;
@@ -159,26 +159,17 @@ body{
               1px -1px 1px #112,
               -1px -1px 1px #112,
               1px 1px 1px #112;
+  letter-spacing: 2px;
+  font-size: 24px;
+  /* margin-top: 13px;
+  margin-bottom: 13px; */
+  margin: auto;
 }
 
-.btnClass:hover {
+button:hover {
   background-color: limegreen;
   border: 5px solid green;
   color: rgb(201, 255, 121);
-}
-
-.btnTxt{
-  letter-spacing: 2px;
-  font-size: 24px;
-  margin-top: 13px;
-  margin-bottom: 13px;
-}
-
-button {
-  letter-spacing: 2px;
-  font-size: 24px;
-  margin-top: 13px;
-  margin-bottom: 13px;
 }
 
 #introWrap{
