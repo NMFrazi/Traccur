@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import './homepage.css'
 
 class Homepage extends Component {     
      render = () => {
@@ -22,11 +23,7 @@ class Homepage extends Component {
                               <br />
                          </div>
                          <div id="animation"></div>
-                         <div className="btnWrap">
-                              <div className="btnClass" onClick={this.handleLoginClick}>
-                                   <p className="btnTxt">PLΛY</p>
-                              </div>
-                         </div>
+                              <button>LOGIN</button> <button>REGISTER</button>
                     </div>
                </div>
           );

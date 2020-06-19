@@ -1,0 +1,104 @@
+html{
+  max-height: 890px;
+}
+
+body{
+  background-color: #545454;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.container {
+    width: 770px;
+    height: 770px;
+    margin: auto;
+    position: relative;
+    top: 25px;
+    background: #221E22;
+    box-shadow: 1px 1px 2px black,
+                -1px -1px 2px black,
+                1px -1px 2px black,
+                -1px 1px 2px black,
+                inset 1px 1px 2px #110,
+                inset -1px -1px 2px #110,
+                inset 1px -1px 2px #110,
+                inset -1px 1px 2px #110,
+                inset 0px 0px 5px black;
+    border: 7px solid orange;
+    border-radius: 3px;
+  }
+
+.splashWrap{
+  width: fit-content;
+  margin: auto;
+}
+
+.splashTextTitle{
+  text-align: center;
+  color: lightgoldenrodyellow;
+  text-shadow: 0px 0px 2px lightgoldenrodyellow;
+  font-size: 50px;
+}
+
+.splashText{
+  text-align: center;
+  color: lightgoldenrodyellow;
+  text-shadow: 0px 0px 2px lightgoldenrodyellow;
+  font-size: 16px;
+}
+
+.splashTextRules{
+  width: 510px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  color: lightgoldenrodyellow;
+  text-shadow: 0px 0px 2px lightgoldenrodyellow;
+  font-size: 14px;
+}
+
+button {
+  letter-spacing: 1px;
+  cursor: pointer;
+  height: 50px;
+  border: 5px solid limegreen;
+  box-shadow: 1px 1px 2px black,
+                -1px -1px 2px black,
+                1px -1px 2px black,
+                -1px 1px 2px black,
+                inset 1px 1px 2px #110,
+                inset -1px -1px 2px #110,
+                inset 1px -1px 2px #110,
+                inset -1px 1px 2px #110;
+  border-radius: 5px;
+  background-color: darkgreen;
+  position: relative;
+  text-align: center;
+  color: lightgoldenrodyellow;
+  text-shadow: -1px 1px 1px #112,
+              1px -1px 1px #112,
+              -1px -1px 1px #112,
+              1px 1px 1px #112;
+  letter-spacing: 2px;
+  font-size: 24px;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+button:hover {
+  background-color: limegreen;
+  border: 5px solid green;
+  color: rgb(201, 255, 121);
+}
+
+.btnTxt{
+  letter-spacing: 2px;
+  font-size: 24px;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+form {
+  text-align: center;
+}
