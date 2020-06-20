@@ -25,11 +25,13 @@ body{
                 inset 0px 0px 5px black;
     border: 7px solid orange;
     border-radius: 3px;
+    text-align: center;
   }
 
 .splashWrap{
   width: fit-content;
   margin: auto;
+  margin-top: 25%;
 }
 
 .splashTextTitle{
@@ -72,7 +74,6 @@ button {
                 inset -1px 1px 2px #110;
   border-radius: 5px;
   background-color: darkgreen;
-  position: relative;
   text-align: center;
   color: lightgoldenrodyellow;
   text-shadow: -1px 1px 1px #112,
@@ -92,11 +93,9 @@ button:hover {
   color: rgb(201, 255, 121);
 }
 
-.btnTxt{
-  letter-spacing: 2px;
-  font-size: 24px;
-  margin-top: 13px;
-  margin-bottom: 13px;
+.red{
+  color: orangered;
+  text-shadow: 0px 0px 1.5px orangered;
 }
 
 form {

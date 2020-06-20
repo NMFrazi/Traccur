@@ -8,8 +8,14 @@ router.route("/getplayer")
   .post(function (req, res) {
     console.log(req.body.username);
     db.Player.findOne({ username: req.body.username })
-      .then(dbPlayers => res.json(dbPlayers))
-      .catch(err => res.status(422).json(err))
+      .then(dbPlayer => {
+        console.log("THis is the results from the database " + dbPlayer);
+        res.json(dbPlayer);
+      })
+      .catch(err => {
+        console.log("this is the error being sent " + err);
+        res.status(422).json(err)
+      });
   });
 
 // Create a new player
@@ -18,7 +24,10 @@ router.route("/regplayer")
     db.Player
       .create(req.body)
       .then(dbPlayer => res.json(dbPlayer))
-      .catch(err => res.status(422).json(err))
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err)
+      });
   });
 
 
