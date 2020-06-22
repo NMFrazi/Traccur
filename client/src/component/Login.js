@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import API from "../utils/API";
 import './LoginReg.css';
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import Modal from "./Modal.js";
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
      constructor(props) {
@@ -11,7 +12,7 @@ class Login extends Component {
           this.state = {
                username: "",
                password: "",
-               loggedIn: false,
+               // loggedIn: false,
                show: false
           }
 
@@ -37,11 +38,13 @@ class Login extends Component {
                     username: this.state.username,
                     password: this.state.password
                })
-               .then(res => { 
+               .then(res => {
+                    console.log("returned from db call for login");
                     console.log(res.data);
                     if (res.data !== null){
                          console.log("user logged in");
-                         this.setState({loggedIn: true});
+                         // this.setState({loggedIn: true});
+                         this.props.history.replace("/gamepage");
                     } else {
                          console.log("user NOT logged in");
                          this.showModal();
@@ -58,8 +61,8 @@ class Login extends Component {
      }
 
      render = () => {
-          if (!this.state.loggedIn){          
-               return (                 
+          // if (!this.state.loggedIn){
+               return (
                     <div className="container">
                          <Modal show={this.state.show} handleClose={this.hideModal}>
                               <p>The username or password entered is incorrect.</p>
@@ -102,10 +105,10 @@ class Login extends Component {
                               </form>
                          </div>
                     </div>
-               )} else {
-                    return (<Redirect to="/gamepage" />)
-               };
+               // )} else {
+               //      return (<Redirect to="/gamepage" />)
+               )     // };
      }
 }
 
-export default Login;
+export default withRouter(Login);

@@ -6,16 +6,26 @@ var bcrypt = require("bcrypt");
 
 router.route("/getplayer")
   .post(function (req, res) {
-    console.log(req.body.username);
     db.Player.findOne({ username: req.body.username })
       .then(dbPlayer => {
-        console.log("THis is the results from the database " + dbPlayer);
-        res.json(dbPlayer);
+        if(dbPlayer !== null){
+          truePassword = dbPlayer.checkPassword(req.body.password);
+          if (truePassword === true){
+            let player = {
+              id: dbPlayer._id,
+              username: dbPlayer.username,
+              highestscore: dbPlayer.highestscore,
+              numberofgames: dbPlayer.numberofgames,
+              lastgamescore: dbPlayer.lastgamescore
+            }
+            res.json(player);
+          } else {
+            res.json(null);
+          }
+        } else {
+          res.json(null);
+        }
       })
-      .catch(err => {
-        console.log("this is the error being sent " + err);
-        res.status(422).json(err)
-      });
   });
 
 // Create a new player
