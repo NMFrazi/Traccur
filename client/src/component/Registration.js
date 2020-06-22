@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from "../utils/API";
 import './LoginReg.css';
 import Modal from './Modal';
+import { withRouter } from 'react-router-dom'
 
 class Registration extends Component {
      constructor (props) {
@@ -27,6 +28,10 @@ class Registration extends Component {
           this.setState({ show: false });
      };
 
+     redirect() {
+          console.log(this.props)
+     }
+     
      onHandleSubmit = (event) => {
           console.log("form being submitted");
           event.preventDefault();
@@ -41,7 +46,8 @@ class Registration extends Component {
                })
                     .then(res => {
                          console.log("user registered");
-                         console.log(res.data);
+                         console.log(this.props);
+                         this.props.history.replace("/login");
                     })
                     .catch(err => {
                          console.log(err);
@@ -105,4 +111,4 @@ class Registration extends Component {
      }
 }
 
-export default Registration;
+export default withRouter(Registration);
