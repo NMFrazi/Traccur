@@ -102,20 +102,21 @@ body{
 #splashWrap{
   width: fit-content;
   margin: auto;
+  text-align: center;
 }
 
 #splashTextTitle{
   text-align: center;
   color: lightgoldenrodyellow;
   text-shadow: 0px 0px 2px lightgoldenrodyellow;
-  font-size: 96px;
+  font-size: 65px;
 }
 
 .splashText{
   text-align: center;
   color: lightgoldenrodyellow;
   text-shadow: 0px 0px 2px lightgoldenrodyellow;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .splashTextRules{
@@ -126,7 +127,7 @@ body{
   text-align: left;
   color: lightgoldenrodyellow;
   text-shadow: 0px 0px 2px lightgoldenrodyellow;
-  font-size: 14px;
+  font-size: 8px;
 }
 
 .btnWrap{

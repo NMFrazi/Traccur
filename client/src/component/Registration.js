@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import './LoginReg.css';
+import Modal from './Modal';
+import { withRouter } from 'react-router-dom'
 
 
 class Registration extends Component {
@@ -11,11 +13,26 @@ class Registration extends Component {
 
           this.state = {
                username: "",
-               password: ""
+               password: "",
+               show: false
           }
 
           this.onHandleSubmit = this.onHandleSubmit.bind(this);
           this.onHandleChange = this.onHandleChange.bind(this);
+          this.showModal = this.showModal.bind(this);
+          this.hideModal = this.hideModal.bind(this);
+     }
+
+     showModal = () => {
+          this.setState({ show: true });
+     };
+
+     hideModal = () => {
+          this.setState({ show: false });
+     };
+
+     redirect() {
+          console.log(this.props)
      }
 
      onHandleSubmit = (event) => {
@@ -25,13 +42,20 @@ class Registration extends Component {
                console.log("Username and password are present")
                API.registerPlayer({
                     username: this.state.username,
-                    password: this.state.password
+                    password: this.state.password,
+                    highestscore: 0,
+                    numberofgames: 0,
+                    lastgamescore: 0
                })
                     .then(res => {
                          console.log("user registered");
-                         console.log(res.data);
+                         console.log(this.props);
+                         this.props.history.replace("/login");
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => {
+                         console.log(err);
+                         this.showModal();
+                    });
           }
      }
 
@@ -48,6 +72,10 @@ class Registration extends Component {
           }
           return (
                <div className="container">
+                    <Modal show={this.state.show} handleClose={this.hideModal}>
+                         <p>This user name has already been choosen.</p>
+                         <p>Please enter a different user name.</p>
+                    </Modal>
                     <div className="splashWrap">
                          <p className="splashTextTitle">
                               Registration
@@ -60,7 +88,7 @@ class Registration extends Component {
                          </p>
                          <br />
                          <form onSubmit={this.onHandleSubmit}>
-                              <label htmlFor="username">Username </label>
+                              <label htmlFor="username" className="red">Username </label>
                               <input
                                    type="text"
                                    name="username"
@@ -70,7 +98,7 @@ class Registration extends Component {
                               />
                               <br />
                               <br />
-                              <label htmlFor="username">Password </label>
+                              <label htmlFor="username" className="red">Password </label>
                               <input
                                    type="password"
                                    name="password"
@@ -89,4 +117,4 @@ class Registration extends Component {
      }
 }
 
-export default Registration;
+export default withRouter(Registration);
