@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import './LoginReg.css';
 
+
 class Registration extends Component {
-     constructor (props) {
+     constructor(props) {
           super(props);
+          console.log('props in registration', props);
 
           this.state = {
                username: "",
@@ -31,15 +34,18 @@ class Registration extends Component {
                     .catch(err => console.log(err));
           }
      }
-     
+
      onHandleChange = (event) => {
           console.log("handle change", event);
-          this.setState ({
+          this.setState({
                [event.target.name]: event.target.value
           })
      }
 
      render = () => {
+          if (!this.state.username) {
+               return (<Redirect push to="login" />)
+          }
           return (
                <div className="container">
                     <div className="splashWrap">
@@ -53,15 +59,15 @@ class Registration extends Component {
                               below to register.
                          </p>
                          <br />
-                         <form onSubmit = { this.onHandleSubmit }>
+                         <form onSubmit={this.onHandleSubmit}>
                               <label htmlFor="username">Username </label>
-                              <input 
+                              <input
                                    type="text"
                                    name="username"
                                    value={this.state.username}
                                    onChange={this.onHandleChange}
                                    required
-                              /> 
+                              />
                               <br />
                               <br />
                               <label htmlFor="username">Password </label>
@@ -71,7 +77,7 @@ class Registration extends Component {
                                    value={this.state.password}
                                    onChange={this.onHandleChange}
                                    required
-                              /> 
+                              />
                               <br />
                               <br />
 
