@@ -40,8 +40,8 @@ class Login extends Component {
                })
                .then(res => {
                     console.log("returned from db call for login");
-                    console.log(res.data);
-                    if (res.data !== null){
+                    console.log(res.data.success);
+                    if (res.data.success !== false){
                          console.log("user logged in");
                          // this.setState({loggedIn: true});
                          this.props.history.replace("/gamepage");
@@ -61,7 +61,6 @@ class Login extends Component {
      }
 
      render = () => {
-          // if (!this.state.loggedIn){
                return (
                     <div className="container">
                          <Modal show={this.state.show} handleClose={this.hideModal}>
@@ -105,9 +104,7 @@ class Login extends Component {
                               </form>
                          </div>
                     </div>
-               // )} else {
-               //      return (<Redirect to="/gamepage" />)
-               )     // };
+               )
      }
 }
 
