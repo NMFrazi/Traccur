@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import API from "../utils/API";
-import './LoginReg.css';
+import "./LoginReg.css";
 // import { Redirect } from "react-router-dom";
 import Modal from "./Modal.js";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
-     constructor(props) {
-          super(props);
+  constructor(props) {
+    super(props);
 
-          this.state = {
-               username: "",
-               password: "",
-               // loggedIn: false,
-               show: false
-          }
+    this.state = {
+      username: "",
+      password: "",
+      // loggedIn: false,
+      show: false,
+    };
 
-          this.onHandleSubmit = this.onHandleSubmit.bind(this);
-          this.onHandleChange = this.onHandleChange.bind(this);
-          this.showModal = this.showModal.bind(this);
-          this.hideModal = this.hideModal.bind(this);
-     }
+    this.onHandleSubmit = this.onHandleSubmit.bind(this);
+    this.onHandleChange = this.onHandleChange.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+  }
 
-     showModal = () => {
-          this.setState({ show: true });
-     };
+  showModal = () => {
+    this.setState({ show: true });
+  };
 
-     hideModal = () => {
-          this.setState({ show: false });
-     };
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
      onHandleSubmit = (event) => {
           console.log("form being submitted for login");
@@ -53,12 +53,12 @@ class Login extends Component {
           }
      }
 
-     onHandleChange = (event) => {
-          console.log("handle change", event);
-          this.setState({
-               [event.target.name]: event.target.value
-          })
-     }
+  onHandleChange = (event) => {
+    console.log("handle change", event);
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
 
      render = () => {
                return (
@@ -106,6 +106,7 @@ class Login extends Component {
                     </div>
                )
      }
+
 }
 
 export default withRouter(Login);
