@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./welcomepage.css";
 import { withRouter } from "react-router-dom";
-import "../component/Scoreboard";
-import Scoreboard from "../component/Scoreboard";
 
 class Welcomepage extends Component {
   constructor(props) {
@@ -49,7 +47,6 @@ class Welcomepage extends Component {
             </button>
           </div>
         </div>
-        <Scoreboard></Scoreboard>
       </div>
     );
   };

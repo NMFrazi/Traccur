@@ -4,27 +4,24 @@ import "./LoginReg.css";
 // import { Redirect } from "react-router-dom";
 import Modal from "./Modal.js";
 import { withRouter } from "react-router-dom";
-import "./scoreboard.css";
+import "./scoreboardB.css";
 
+class ComponentB extends React.Component {
+  render() {
+    return <h1>Hello world! This is Component B</h1>;
+  }
+}
 class Scoreboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "",
-      topscore: "",
-      previousscore: "",
-      lastgame: "",
-      // loggedIn: false,
-    };
-
-    this.state = {
       Topten: "",
-      // loggedIn: false,
+      // loggedIn: false
     };
   }
 
-  onClickHandler = (event) => {
+  btnClickHandler = (event) => {
     console.log(event.target.value);
     this.props.history.push(event.target.value);
   };
@@ -32,8 +29,8 @@ class Scoreboard extends Component {
   render = () => {
     return (
       <div>
-        <h2></h2>
-        <div className="containerone">
+        <h1></h1>
+        <div className="containerA">
           <div id="splashWrap">
             <p id="splashTextTitle"></p>
             <p className="splashText red">Username</p>
@@ -54,21 +51,6 @@ class Scoreboard extends Component {
       </div>
     );
   };
-
-  render = () => {
-    return (
-      <div>
-        <h3></h3>
-        <div className="containertwo">
-          <div id="splashWrap">
-            <p id="splashTextTitle"></p>
-            <p className="splashText red">Top Ten</p>
-            <br />
-          </div>
-        </div>
-      </div>
-    );
-  };
 }
 
-export default Scoreboard;
+export default ScoreboardB;

@@ -10,10 +10,29 @@ body {
 .containerone {
   width: 385px;
   height: 770px;
+  top: -675px;
+  right: 700px;
   margin: auto;
+  display: inline-block;
   position: relative;
-  float: left;
   top: 25px;
+  background: #221e22;
+  box-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black,
+    -1px 1px 2px black, inset 1px 1px 2px #110, inset -1px -1px 2px #110,
+    inset 1px -1px 2px #110, inset -1px 1px 2px #110, inset 0px 0px 5px black;
+  border: 7px solid orange;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.containertwo {
+  width: 385px;
+  height: 770px;
+  margin: auto;
+  display: inline-block;
+  position: relative;
+  top: -675px;
+  left: 700px;
   background: #221e22;
   box-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black,
     -1px 1px 2px black, inset 1px 1px 2px #110, inset -1px -1px 2px #110,
@@ -52,27 +71,6 @@ body {
   color: lightgoldenrodyellow;
   text-shadow: 0px 0px 2px lightgoldenrodyellow;
   font-size: 14px;
-}
-
-button {
-  letter-spacing: 1px;
-  cursor: pointer;
-  height: 50px;
-  border: 5px solid limegreen;
-  box-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black,
-    -1px 1px 2px black, inset 1px 1px 2px #110, inset -1px -1px 2px #110,
-    inset 1px -1px 2px #110, inset -1px 1px 2px #110;
-  border-radius: 5px;
-  background-color: darkgreen;
-  text-align: center;
-  color: lightgoldenrodyellow;
-  text-shadow: -1px 1px 1px #112, 1px -1px 1px #112, -1px -1px 1px #112,
-    1px 1px 1px #112;
-  letter-spacing: 2px;
-  font-size: 24px;
-  margin-top: 13px;
-  margin-bottom: 13px;
-  font-family: "Press Start 2P", cursive;
 }
 
 .red {
