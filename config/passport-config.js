@@ -1,14 +1,16 @@
-const LocalStrategy = require("passport-local");
-const Player = require("../models/Player");
+const LocalStrategy = require("passport-local").Strategy;
+const Player = require("../models/player");
 const bcrypt = require("bcrypt");
-module.exports = passport => {
+const passport = require("passport");
+
+
     // serialize the user.id to save in the cookie session
     // so the browser will remember the user when login
     passport.serializeUser((user, done) => {
         console.log("serilize");
-        console.log(user);
+        console.log(user._id);
         console.log("************************");
-        done(null, user.id);
+        done(null, user._id);
     });
     // deserialize the cookieUserId to user in the database
     passport.deserializeUser((id, done) => {
@@ -26,16 +28,14 @@ module.exports = passport => {
     });
     passport.use(
         new LocalStrategy(
-            {
-                usernameField: "email"
-            },
-            (email, password, done) => {
-                // Matcch User
+            (username, password, done) => {
+                // Match User
+                console.log("In local strategy");
                 Player.findOne({
-                    email
+                    username: username
                 })
                     .then(user => {
-                        console.log("local strategy", user);
+                        console.log("local strategy!!", user);
                         if (!user) {
                             return done(null, false, {
                                 message: "That email is not registered"
@@ -45,7 +45,7 @@ module.exports = passport => {
                         bcrypt.compare(password, user.password, (err, isMatch) => {
                             console.log("match*****", isMatch);
                             if (err) throw err;
-                            if (isMatch) {
+                            if (isMatch === true) {
                                 console.log("log in successful");
                                 return done(null, user);
                             }
@@ -59,4 +59,5 @@ module.exports = passport => {
         )
     );
 
-};
+
+module.exports = passport;
