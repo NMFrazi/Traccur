@@ -6,14 +6,14 @@ body {
   font-family: "Press Start 2P", cursive;
 }
 
-.containertwo {
+.containerone {
   width: 385px;
   height: 770px;
+  top: -1475px;
+  right: 700px;
   margin: auto;
   display: inline-block;
   position: relative;
-  top: -675px;
-  left: 700px;
   background: #221e22;
   box-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black,
     -1px 1px 2px black, inset 1px 1px 2px #110, inset -1px -1px 2px #110,
@@ -38,7 +38,7 @@ body {
 
 .splashText {
   text-align: center;
-  color: lightgoldenrodyellow;
+  color: orang;
   text-shadow: 0px 0px 2px lightgoldenrodyellow;
   font-size: 16px;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./welcomepage.css";
 import Scoreboard from "../component/Scoreboard";
+import Scoreboard2 from "../component/Scoreboard2";
 
 class Gamepage extends Component {
   render = () => {
@@ -27,6 +28,7 @@ class Gamepage extends Component {
           <button type="button">PLΛY</button>
         </div>
         <Scoreboard></Scoreboard>
+        <Scoreboard2></Scoreboard2>
       </div>
     );
   };
