@@ -1,0 +1,82 @@
+html {
+  max-height: 890px;
+}
+body {
+  background-color: #545454;
+  font-family: "Press Start 2P", cursive;
+}
+
+.containerone {
+  width: 385px;
+  height: 770px;
+  top: -675px;
+  right: 700px;
+  margin: auto;
+  display: inline-block;
+  position: relative;
+  top: 25px;
+  background: #221e22;
+  box-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black,
+    -1px 1px 2px black, inset 1px 1px 2px #110, inset -1px -1px 2px #110,
+    inset 1px -1px 2px #110, inset -1px 1px 2px #110, inset 0px 0px 5px black;
+  border: 7px solid orange;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.containertwo {
+  width: 385px;
+  height: 770px;
+  margin: auto;
+  display: inline-block;
+  position: relative;
+  top: -675px;
+  left: 700px;
+  background: #221e22;
+  box-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black,
+    -1px 1px 2px black, inset 1px 1px 2px #110, inset -1px -1px 2px #110,
+    inset 1px -1px 2px #110, inset -1px 1px 2px #110, inset 0px 0px 5px black;
+  border: 7px solid orange;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.splashWrap {
+  width: fit-content;
+  margin: auto;
+  margin-top: 25%;
+}
+
+.splashTextTitle {
+  text-align: left;
+  color: lightgoldenrodyellow;
+  text-shadow: 0px 0px 2px lightgoldenrodyellow;
+  font-size: 50px;
+}
+
+.splashText {
+  text-align: center;
+  color: lightgoldenrodyellow;
+  text-shadow: 0px 0px 2px lightgoldenrodyellow;
+  font-size: 16px;
+}
+
+.splashTextRules {
+  width: 510px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  color: lightgoldenrodyellow;
+  text-shadow: 0px 0px 2px lightgoldenrodyellow;
+  font-size: 14px;
+}
+
+.red {
+  color: orangered;
+  text-shadow: 0px 0px 1.5px orangered;
+}
+
+form {
+  text-align: center;
+}
