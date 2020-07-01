@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import "./welcomepage.css";
 import Scoreboard from "../component/Scoreboard";
 
+export default Gamepage;
+componentWillUnmount(){
+  API.logout()
+    .then(res => {
+      console.log("user logged out" + res.data);
+
+    })
+}
+
 class Gamepage extends Component {
   render = () => {
     return (
@@ -32,4 +41,3 @@ class Gamepage extends Component {
   };
 }
 
-export default Gamepage;

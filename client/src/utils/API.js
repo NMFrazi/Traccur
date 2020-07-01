@@ -5,6 +5,9 @@ export default {
      getPlayer: function (loginInfo) {
           return axios.post("/api/getplayer", loginInfo);
      },
+     logout: function () {
+          return axios.post("/api/logout");
+     }
      // // Gets the book with the given id
      // getBook: function (id) {
      //      return axios.get("/api/books/" + id);
