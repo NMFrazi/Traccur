@@ -3,10 +3,11 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 
 const playerSchema = new Schema({
-  username: { 
-    type: String, 
+  username: {
+    type: String,
     required: true,
-    unique: true },
+    unique: true
+  },
   password: { type: String, required: true },
   highestscore: { type: Number },
   numberofgames: { type: Number },

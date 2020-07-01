@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import './LoginReg.css';
 import Modal from './Modal';
@@ -48,6 +47,7 @@ class Registration extends Component {
                     lastgamescore: 0
                })
                     .then(res => {
+                         console.log(res)
                          console.log("user registered");
                          console.log(this.props);
                          this.props.history.replace("/login");
@@ -67,9 +67,7 @@ class Registration extends Component {
      }
 
      render = () => {
-          if (!this.state.username) {
-               return (<Redirect push to="login" />)
-          }
+
           return (
                <div className="container">
                     <Modal show={this.state.show} handleClose={this.hideModal}>

@@ -1,6 +1,7 @@
-const LocalStrategy = require("passport-local");
-const Player = require("../models/Player");
+const LocalStrategy = require("passport-local").Strategy;
+const Player = require("../models/player");
 const bcrypt = require("bcrypt");
+const { Strategy } = require("passport");
 module.exports = passport => {
     // serialize the user.id to save in the cookie session
     // so the browser will remember the user when login
@@ -27,12 +28,12 @@ module.exports = passport => {
     passport.use(
         new LocalStrategy(
             {
-                usernameField: "email"
+                usernameField: "username"
             },
-            (email, password, done) => {
+            (username, password, done) => {
                 // Matcch User
                 Player.findOne({
-                    email
+                    username: username
                 })
                     .then(user => {
                         console.log("local strategy", user);
@@ -45,7 +46,7 @@ module.exports = passport => {
                         bcrypt.compare(password, user.password, (err, isMatch) => {
                             console.log("match*****", isMatch);
                             if (err) throw err;
-                            if (isMatch) {
+                            if (isMatch !== false) {
                                 console.log("log in successful");
                                 return done(null, user);
                             }
