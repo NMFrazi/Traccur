@@ -7,7 +7,7 @@ const passport = require("passport");
 const path = require("path");
 const bodyParser = require("body-parser")
 const app = express();
-const keys = require("./config/keys.js");
+// const keys = require("./config/keys.js");
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cookieSession ({
      maxAge: 24 * 60 * 60 * 1000,
-     keys: [keys.session.cookieKey]
+     keys: ['key1']
 }));
 // initalize passport
 app.use(passport.initialize());

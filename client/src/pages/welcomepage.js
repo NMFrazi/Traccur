@@ -16,9 +16,6 @@ class Welcomepage extends Component {
   render = () => {
     return (
       <div>
-        <h1 id="title">
-          TR<span id="redTitle">Λ</span>CC<span id="redTitle">V</span>R
-        </h1>
         <div className="container">
           <div id="splashWrap">
             <p id="splashTextTitle">WELCOME</p>

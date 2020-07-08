@@ -4,7 +4,7 @@ import Welcomepage from "./pages/welcomepage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/loginpage";
 import Register from "./pages/register";
-import Gamepage from "./pages/gamepage";
+import Game from "./component/GameComponents/Game";
 
 class App extends Component {
   render = () => {
@@ -15,7 +15,7 @@ class App extends Component {
           <Route exact path="/welcomepage" component={Welcomepage} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/gamepage" component={Gamepage} />
+          <Route exact path="/play" component={Game} />
         </Switch>
       </Router>
     );
