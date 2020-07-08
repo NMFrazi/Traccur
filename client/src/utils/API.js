@@ -5,16 +5,21 @@ export default {
      getPlayer: function (loginInfo) {
           return axios.post("/api/getplayer", loginInfo);
      },
-     // // Gets the book with the given id
-     // getBook: function (id) {
-     //      return axios.get("/api/books/" + id);
-     // },
-     // // Deletes the book with the given id
-     // deleteBook: function (id) {
-     //      return axios.delete("/api/books/" + id);
-     // },
-     // Saves a book to the database
+
      registerPlayer: function (playerData) {
           return axios.post("/api/regplayer", playerData);
+     },
+
+     getUser: function () {
+          return axios.get("/api/getuser");
+     },
+
+     updateScore: function (gameData) {
+          console.log("UPDATE SCORE FUNCTION RUNS");
+          return axios.put("/api/updatescore", gameData);
+     },
+
+     logout: function(){
+          return axios.post("/api/logout");
      }
 };

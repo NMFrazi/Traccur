@@ -3,19 +3,6 @@ const router = require("express").Router();
 // const passport = require("passport");
 const passport = require("../config/passport-config");
 
-// Login Handle
-// router.post("/login", (req, res, next) => {
-//   console.log("***********login from redirect********");
-//   console.log(req.user);
-//   console.log(req.body);
-//   passport.authenticate("local", {
-//     successRedirect: "/auth/login/success",
-//     failureRedirect: "/auth/login/failed"
-//     // failureFlash: true
-//   })(req, res, next);
-// });
-// when login failed, send failed msg
-
 router.route("/getplayer")
      .post(
           passport.authenticate("local", {
@@ -68,55 +55,53 @@ router.route("/regplayer")
                });
      })
 
-// Create a new player
-// router.route("/regplayer")
-//   .post(function (req, res) {
-//     const {
-//       username, password
-//     } = req.body
-//     const newPlayer = new Player({
-//       username,
-//       password
-//     });
-//     console.log("anything")
-//     console.log(newPlayer)
-//     console.log(username, password)
-//     bcrypt.genSalt(10, (err, salt) =>
-//       bcrypt.hash(newPlayer.password, salt, (err, hash) => {
-//         if (err) throw err;
-//         // set password to hashed
-//         newPlayer.password = hash;
-//         // save user
-//         newPlayer
-//           .save()
-//           .then(user => {
-//             req.logIn(user, err => {
-//               if (!err) {
-//                 const results = {
-//                   success: true,
-//                   message: "user has successfully authenticated",
-//                   user: user,
-//                   email: req.user.email,
-//                   cookies: req.cookies
-//                 };
-//                 res.json(results);
-//               } else {
-//                 res.json(err);
-//               }
-//             });
-//             // res.redirect("/auth/login");
-//             // res.redirect(CLIENT_HOME_PAGE_URL);
-//           })
-//           .catch(err => console.log(err));
-//       })
-//     );
-// db.Player
-//   .create(req.body)
-//   .then(dbPlayer => res.json(dbPlayer))
-//   .catch(err => {
-//     console.log(err);
-//     res.status(422).json(err)
-//   });
-// });
+router.route("/getuser")
+     .get(function (req, res) {
+          console.log("GET USER ROUTE RETURNS: "  + req.user);
+          if(req.user === undefined){
+               res.json({
+                    isLoggedIn: false
+               });
+          }
+          else{
+               res.json({
+                    isLoggedIn: true
+               });
+          }
+     })
+
+router.route("/updatescore")
+     .put(function (req, res) {
+          let user = {username: req.user.username};
+          let newHighScore;
+          if(req.body.lastgamescore > req.user.highestscore){
+               newHighScore = req.body.lastgamescore;
+          }
+          else{
+               newHighScore = req.user.highestscore;
+          }
+          let updateInfo = {lastgamescore: req.body.lastgamescore, numberofgames: (req.user.numberofgames+1), highestscore: newHighScore}
+          db.Player
+               .findOneAndUpdate(user, updateInfo, {
+                    new: true
+               })
+               .then(dbPlayer => res.json(dbPlayer))
+               .catch(err => {
+                    console.log(err);
+                    res.status(422).json(err)
+               });
+})
+
+router.route("/logout")
+     .post(function (req, res) {
+          console.log("logout function called\n");
+          console.log(req.user);
+     if (req.user) {
+          req.logout()
+          res.send({ msg: 'logging out' })
+     } else {
+          res.send({ msg: 'no user to log out' })
+     }
+})
 
 module.exports = router;

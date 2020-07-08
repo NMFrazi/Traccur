@@ -44,7 +44,7 @@ class Login extends Component {
                     if (res.data.success !== false){
                          console.log("user logged in");
                          // this.setState({loggedIn: true});
-                         this.props.history.replace("/gamepage");
+                         this.props.history.replace("/play");
                     } else {
                          console.log("user NOT logged in");
                          this.showModal();
