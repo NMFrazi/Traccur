@@ -37,7 +37,7 @@ app.get("*", (req, res) => {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gamedb", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/gamedb" || "mongodb://admin:notadmin1@ds121665.mlab.com:21665/heroku_8xtk9w75", {
      useNewUrlParser: true,
      useUnifiedTopology: true
 });
