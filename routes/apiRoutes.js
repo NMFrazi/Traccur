@@ -55,6 +55,12 @@ router.route("/regplayer")
                });
      })
 
+router.route("/getuserinfo")
+     .get(function (req, res) {
+          console.log("GET USER INFO ROUTE RETURNS: "  + req.user);
+          res.json({user: req.user});
+})
+
 router.route("/getuser")
      .get(function (req, res) {
           console.log("GET USER ROUTE RETURNS: "  + req.user);
@@ -67,6 +73,7 @@ router.route("/getuser")
                res.json({
                     isLoggedIn: true
                });
+               console.log(res.req.user);
           }
      })
 

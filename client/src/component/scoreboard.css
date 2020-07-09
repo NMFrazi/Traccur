@@ -6,15 +6,14 @@ body {
   font-family: "Press Start 2P", cursive;
 }
 
-.containerone {
+.containerLeft {
   width: 385px;
-  height: 770px;
-  top: -675px;
-  right: 700px;
+  height: 550px;
+  position: absolute;
+  top: 127px;
+  left: 135px;
   margin: auto;
-  display: inline-block;
-  position: relative;
-  top: 25px;
+  /* display: inline-block; */
   background: #221e22;
   box-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black,
     -1px 1px 2px black, inset 1px 1px 2px #110, inset -1px -1px 2px #110,
@@ -24,9 +23,9 @@ body {
   text-align: center;
 }
 
-.containertwo {
+.containerRight {
   width: 385px;
-  height: 770px;
+  height: 500px;
   margin: auto;
   display: inline-block;
   position: relative;
