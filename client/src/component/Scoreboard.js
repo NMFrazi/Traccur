@@ -1,60 +1,45 @@
 import React, { Component } from "react";
-// import API from "../utils/API";
-import "./LoginReg.css";
-// import { withRouter } from "react-router-dom";
 import "./scoreboard.css";
+import API from "../utils/API";
 
 class Scoreboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "",
-      topscore: "",
-      previousscore: "",
-      lastgame: "",
-      // loggedIn: false,
     };
 
-    this.state = {
-      Topten: "",
-      // loggedIn: false,
-    };
+  }
+
+  handleOnClick(){
+    API.logout().then(res => {
+        console.log(res.data.isLoggedIn);
+    });
   }
 
   render = () => {
     return (
       <div>
-        <div className="containerone">
+        <div className="containerLeft">
           <div id="splashWrap">
-            <p id="splashTextTitle"></p>
+            <br/>
             <p className="splashText red">Username</p>
+            <p className="splashText">{this.props.username}</p>
             <br />
             <br />
-            <p className="splashText red">Top Ten</p>
+            <br />
+            <p className="splashText red">Top Score</p>
+            <p className="splashText">{this.props.top}</p>
             <br />
             <br />
-            <p className="splashText">Previous Score</p>
+            <br />
+            <p className="splashText red">Last Game</p>
+            <p className="splashText">{this.props.last}</p>
             <br />
             <br />
-            <p className="splashText">Last Game</p>
             <br />
-            <br />
-            <p className="splashText"></p>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  render = () => {
-    return (
-      <div>
-        <div className="containertwo">
-          <div id="splashWrap">
-            <p id="splashTextTitle"></p>
-            <p className="splashText red">Top Ten</p>
-            <br />
+            <p className="splashText red">Games Played</p>
+            <p className="splashText">{this.props.total}</p>
           </div>
         </div>
       </div>

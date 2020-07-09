@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DemoIntro from "./DemoIntro";
-// import Scoreboard from "../Scoreboard";
+import Scoreboard from "../Scoreboard";
 // import ScoreboardB from "../ScoreboardB";
 
 import API from "../../utils/API";
@@ -14,13 +14,17 @@ class Game extends Component {
         super(props);
 
         this.state = {
+            username: "",
+            userTopScore: "",
+            lastGameScore: "",
+            gamesPlayed: "",
             //Game variables
             gameRunning: false,
             gameNumber: 0,
             gameOver: false,
             //Score variables
             scoreVal: 0,
-            multiplier: 0,
+            multiplier: 1,
             stepUp: 0,
             stepDown: 0,
             //Countdown variables
@@ -105,7 +109,6 @@ class Game extends Component {
             this.setState({introBottomTxtFirst: introTextBottomFirst[0]});
             this.setState({introBottomTxtHighlight: textRed[0]});
             this.setState({introBottomTxtEnd: introTextBottomSecond[0]});
-
         }
         else if(this.state.demoStep === 1) {
             this.setState({introTopTxt: introTextTopArray[1]});
@@ -166,7 +169,7 @@ class Game extends Component {
 
         console.log("Demo mode runs");
         let moveTimer = 0;
-        setTimeout(function(){this.demoReset()}.bind(this),13000);
+        setTimeout(function(){this.demoReset()}.bind(this),12000);
         setTimeout(function(){this.setFrameInterval(moveTimer,this.randomFrameTarget("horizontal"),this.randomFrameTarget("vertical"))}.bind(this),2500);
         
     }
@@ -192,7 +195,7 @@ class Game extends Component {
         this.setState({countdown: false});
         this.setState({gameRunning: true});
         this.setState({scoreVal: 0});
-        this.setState({multiplier: 0});
+        this.setState({multiplier: 1});
         let moveTimer = 0;
         let scoreTimer = 0;
         this.setFrameInterval(moveTimer,this.randomFrameTarget("horizontal"),this.randomFrameTarget("vertical"));
@@ -259,6 +262,8 @@ class Game extends Component {
 
         API.updateScore({
             lastgamescore: this.state.scoreVal
+        }).then(res => {
+            this.setUserInformation();
         });
         
       }
@@ -452,28 +457,42 @@ class Game extends Component {
         
     }
 
+    logoutUser(){
+        API.logout()
+          .then(res => {
+              console.log("user logged out" + res.data);
+              this.props.history.replace("/login");
+        })
+    }
+
     componentDidMount(){
         API.getUser()
-       .then(res => {
+        .then(res => {
             console.log(res.data.isLoggedIn);
             if (!res.data.isLoggedIn){
                 this.props.history.replace("/login");
             }
-       });
+            else{
+                this.setUserInformation();
+            }
+        });
     }
 
     componentWillUnmount(){
-        API.logout()
-          .then(res => {
-              console.log("user logged out" + res.data);
+        this.logoutUser();
+    }
+
+    setUserInformation(){
+        API.getUserInfo().then(res => {
+            this.setState({username: res.data.user.username});
+            this.setState({userTopScore: res.data.user.highestscore});
+            this.setState({lastGameScore: res.data.user.lastgamescore});
+            this.setState({gamesPlayed: res.data.user.numberofgames});
         })
     }
 
     handleOnClick = () => {
-        API.logout()
-          .then(res => {
-              console.log("user logged out" + res.data);
-        })
+        this.logoutUser();
     }
 
     render = () => {
@@ -483,37 +502,49 @@ class Game extends Component {
 
         if(this.state.demoIntro){
             return(
-            <div className="container">
-                <DemoIntro/>
-                <div id="startBtnWrap">
-                    <div id="startBtn" onClick={this.onStartClick}><p id="startTxt">PLΛY</p></div>
-                </div>
-            </div>);
+                <div>
+                    <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
+                    <div className="container">
+                        <DemoIntro/>
+                        <div id="startBtnWrap">
+                            <div id="startBtn" onClick={this.onStartClick}><p id="startTxt">PLΛY</p></div>
+                        </div>
+                    </div>
+                    <div id="startBtnWrap">
+                        <div id="startBtn" onClick={this.handleOnClick} style={{position:"relative", right: 735, bottom: 275}}><p id="startTxt" style={{fontSize:18}}>LOGOUT</p></div>
+                    </div>
+                </div>);
         }
         if(this.state.demoMode){
             if(this.state.demoStep === 0){
                 return(
-                    <div className="container">
-                        <div className="introWrap">
-                            <div className="fade-in">
-                                <p className="introTop">Place your cursor on the <span className="yellowHighlight">square</span> below</p>
+                    <div>
+                        <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
+                        <div className="container">
+                            <div className="introWrap">
+                                <div className="fade-in">
+                                    <p className="introTop">Place your cursor on the <span className="yellowHighlight">square</span> below</p>
+                                </div>
+                            </div>
+                
+                        <div onMouseEnter={this.demoStep}>
+                            <div
+                                id="animation"
+                                style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
+                                // onMouseLeave={mouseLeave}
+                                ref={(ref) => this.box = ref}
+                            ></div>
+                        </div>
+                    
+                            <div className="introWrapBottom">
+                                <div className="fade-in">
+                                    <p id="arrow" className="yellowHighlight">↑</p>
+                                    <p className="introBottom"><span className="red">HINT!</span> IT'S RIGHT HERE</p>
+                                </div>
                             </div>
                         </div>
-            
-                    <div onMouseEnter={this.demoStep}>
-                        <div
-                            id="animation"
-                            style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
-                            // onMouseLeave={mouseLeave}
-                            ref={(ref) => this.box = ref}
-                        ></div>
-                    </div>
-                
-                        <div className="introWrapBottom">
-                            <div className="fade-in">
-                                <p id="arrow" className="yellowHighlight">↑</p>
-                                <p className="introBottom"><span className="red">HINT!</span> IT'S RIGHT HERE</p>
-                            </div>
+                        <div id="startBtnWrap">
+                            <div id="startBtn" onClick={this.handleOnClick} style={{position:"relative", right: 735, bottom: 275}}><p id="startTxt" style={{fontSize:18}}>LOGOUT</p></div>
                         </div>
                     </div>
                 )
@@ -521,27 +552,33 @@ class Game extends Component {
             else{
                 this.startDemo();
                 return (
-                    <div className="container">
-                        <div className="introWrap">
-                            <div className="fade-in">
-                                <br/>
-                                <p className="introTop fade-in">{this.state.introTopTxt}</p>
+                    <div>
+                        <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
+                        <div className="container">
+                            <div className="introWrap">
+                                <div className="fade-in">
+                                    <br/>
+                                    <p className="introTop fade-in">{this.state.introTopTxt}</p>
+                                </div>
+                            </div>
+                    
+                            <div
+                                id="animation"
+                                style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
+                                // ref={(ref) => this.box = ref}
+                            ></div>
+                        
+                            <div className="introWrapBottom">
+                                <div className="fade-in">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <p className="introBottom fade-in">{this.state.introBottomTxtFirst} <span className="red">{this.state.introBottomTxtHighlight}</span> {this.state.introBottomTxtEnd}</p>
+                                </div>
                             </div>
                         </div>
-                
-                        <div
-                            id="animation"
-                            style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
-                            // ref={(ref) => this.box = ref}
-                        ></div>
-                    
-                        <div className="introWrapBottom">
-                            <div className="fade-in">
-                                <br/>
-                                <br/>
-                                <br/>
-                                <p className="introBottom fade-in">{this.state.introBottomTxtFirst} <span className="red">{this.state.introBottomTxtHighlight}</span> {this.state.introBottomTxtEnd}</p>
-                            </div>
+                        <div id="startBtnWrap">
+                            <div id="startBtn" onClick={this.handleOnClick} style={{position:"relative", right: 735, bottom: 275}}><p id="startTxt" style={{fontSize:18}}>LOGOUT</p></div>
                         </div>
                     </div>
                 );
@@ -552,49 +589,65 @@ class Game extends Component {
         }
         if(this.state.countdown){
             return(
-                <div className="container">
-                    <div className="countdown">
-                        <p>{this.state.countdownVal}</p>
+                <div>
+                    <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
+                    <div className="container">
+                        <div className="countdown">
+                            <p>{this.state.countdownVal}</p>
+                        </div>
+                        <div
+                            id="animation"
+                            style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
+                            onMouseEnter={mouseEnter}
+                            onMouseLeave={mouseLeave}
+                        ></div>
                     </div>
-        
-                    <div
-                        id="animation"
-                        style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
-                        onMouseEnter={mouseEnter}
-                        onMouseLeave={mouseLeave}
-                    ></div>
-            </div>
+                    <div id="startBtnWrap">
+                        <div id="startBtn" onClick={this.handleOnClick} style={{position:"relative", right: 735, bottom: 275}}><p id="startTxt" style={{fontSize:18}}>LOGOUT</p></div>
+                    </div>
+                </div>
             )
         }
         if(this.state.gameOver) {
             return (
-                <div className="container">
-                    <div id="gameOverWrap">
-                        <p>GAME OVER</p>
-                    </div>
-                    <div id="scoreWrap">
-                        <p className="red">SCORE:</p>
-                        <p className="yellow">{this.state.scoreVal}</p>
+                <div>
+                    <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
+                    <div className="container">
+                        <div id="gameOverWrap">
+                            <p>GAME OVER</p>
+                        </div>
+                        <div id="scoreWrap">
+                            <p className="red">SCORE:</p>
+                            <p className="yellow">{this.state.scoreVal}</p>
+                        </div>
+                        <div id="startBtnWrap">
+                            <div id="startBtn" onClick={this.onStartClick}><p id="startTxt">PLΛY</p></div>
+                        </div>
                     </div>
                     <div id="startBtnWrap">
-                        <div id="startBtn" onClick={this.onStartClick}><p id="startTxt">PLΛY</p></div>
+                        <div id="startBtn" onClick={this.handleOnClick} style={{position:"relative", right: 735, bottom: 275}}><p id="startTxt" style={{fontSize:18}}>LOGOUT</p></div>
                     </div>
                 </div>
             );
         }
         else{
             return (
-                <div className="container">
-                    <div className="scoreBox">
-                        <p>SCORE: {this.state.scoreVal} <span id="multi">x<span className="yellow"> {this.state.multiplier}</span></span></p>
+                <div>
+                    <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
+                    <div className="container">
+                        <div className="scoreBox">
+                            <p>SCORE: {this.state.scoreVal} <span id="multi">x<span className="yellow"> {this.state.multiplier}</span></span></p>
+                        </div>
+                        <div
+                            id="animation"
+                            style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
+                            onMouseEnter={mouseEnter}
+                            onMouseLeave={mouseLeave}
+                        ></div>
                     </div>
-                    <div
-                        id="animation"
-                        style={{left:this.state.horizontalPos, top:this.state.verticalPos}}
-                        onMouseEnter={mouseEnter}
-                        onMouseLeave={mouseLeave}
-                    ></div>
-
+                    <div id="startBtnWrap">
+                        <div id="startBtn" onClick={this.handleOnClick} style={{position:"relative", right: 735, bottom: 275}}><p id="startTxt" style={{fontSize:18}}>LOGOUT</p></div>
+                    </div>
                 </div>
             );
         }

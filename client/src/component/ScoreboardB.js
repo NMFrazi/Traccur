@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import API from "../utils/API";
 import "./LoginReg.css";
-// import { withRouter } from "react-router-dom";
 import "./scoreboard.css";
 
 class ScoreboardB extends Component {
@@ -9,8 +7,6 @@ class ScoreboardB extends Component {
     super(props);
 
     this.state = {
-      Topten: "",
-      // loggedIn: false
     };
   }
 
@@ -19,11 +15,7 @@ class ScoreboardB extends Component {
       <div>
         <div className="containerA">
           <div id="splashWrap">
-            <p id="splashTextTitle"></p>
             <p className="splashText red">Username</p>
-            <br />
-            <br />
-            <p className="splashText red">Top Ten</p>
             <br />
             <br />
             <p className="splashText">Previous Score</p>

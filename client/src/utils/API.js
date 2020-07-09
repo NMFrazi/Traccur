@@ -14,6 +14,10 @@ export default {
           return axios.get("/api/getuser");
      },
 
+     getUserInfo: function () {
+          return axios.get("/api/getuserinfo");
+     },
+
      updateScore: function (gameData) {
           console.log("UPDATE SCORE FUNCTION RUNS");
           return axios.put("/api/updatescore", gameData);
