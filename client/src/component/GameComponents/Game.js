@@ -522,7 +522,7 @@ class Game extends Component {
                         <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
                         <div className="container">
                             <div className="introWrap">
-                                <div className="fade-in">
+                                <div>
                                     <p className="introTop">Place your cursor on the <span className="yellowHighlight">square</span> below</p>
                                 </div>
                             </div>
@@ -537,7 +537,7 @@ class Game extends Component {
                         </div>
                     
                             <div className="introWrapBottom">
-                                <div className="fade-in">
+                                <div>
                                     <p id="arrow" className="yellowHighlight">↑</p>
                                     <p className="introBottom"><span className="red">HINT!</span> IT'S RIGHT HERE</p>
                                 </div>
@@ -556,9 +556,9 @@ class Game extends Component {
                         <Scoreboard username={this.state.username} top={this.state.userTopScore} last={this.state.lastGameScore} total={this.state.gamesPlayed}/>
                         <div className="container">
                             <div className="introWrap">
-                                <div className="fade-in">
+                                <div>
                                     <br/>
-                                    <p className="introTop fade-in">{this.state.introTopTxt}</p>
+                                    <p className="introTop">{this.state.introTopTxt}</p>
                                 </div>
                             </div>
                     
@@ -569,11 +569,11 @@ class Game extends Component {
                             ></div>
                         
                             <div className="introWrapBottom">
-                                <div className="fade-in">
+                                <div>
                                     <br/>
                                     <br/>
                                     <br/>
-                                    <p className="introBottom fade-in">{this.state.introBottomTxtFirst} <span className="red">{this.state.introBottomTxtHighlight}</span> {this.state.introBottomTxtEnd}</p>
+                                    <p className="introBottom">{this.state.introBottomTxtFirst} <span className="red">{this.state.introBottomTxtHighlight}</span> {this.state.introBottomTxtEnd}</p>
                                 </div>
                             </div>
                         </div>
