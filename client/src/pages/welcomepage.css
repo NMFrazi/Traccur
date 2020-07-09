@@ -167,23 +167,6 @@ button:hover {
   font-size: 14px;
 }
 
-.fade-in {
-	opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 2s;
-}
-
-@keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
 #countdown{
   width: 500px;
   height: fit-content;
@@ -212,7 +195,6 @@ button:hover {
 }
 
 #multi{
-  opacity: 75%;
   color: #110;
 }
 
@@ -231,7 +213,6 @@ button:hover {
   margin-top: 15px;
   margin-bottom: 150px;
   font-size: 24px;
-  opacity: 75%;
 }
 
 .yellow{
